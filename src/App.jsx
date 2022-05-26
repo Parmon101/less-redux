@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
+import { fetchCustomers } from "./asyncActions/customers";
 import {
     addCustomerAction,
     removeCustomerAction,
@@ -63,6 +64,9 @@ export const App = () => {
                 <button onClick={() => addCustomer(prompt())}>
                     Добавить клиента
                 </button>
+                <button onClick={() => dispatch(fetchCustomers())}>
+                    Добавить клиента из базы
+                </button>
                 <button onClick={twoFunc}>Удалить клиента</button>
             </div>
             <div style={{ fontSize: "2rem" }}> Снято {cleanSumm}</div>
@@ -70,6 +74,7 @@ export const App = () => {
                 <div>
                     {customers.map((customer) => (
                         <div
+                            key={customer.id}
                             onClick={() => removeCustomer(customer)}
                             style={{
                                 fontSize: "2rem",
